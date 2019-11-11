@@ -27,13 +27,13 @@ namespace EFStoredProcedureSample
         private static void QueryPetsByType(string type)
         {
             using var petContext = new PetContext();
-            List<Pet> cats = petContext.Pets
+            List<Pet> pets = petContext.Pets
                 .FromSqlRaw("EXEC GetPetsByType @Type={0};", type)
                 .ToList();
 
-            foreach (var cat in cats)
+            foreach (var pet in pets)
             {
-                Console.WriteLine($"Name: {cat.Name}");
+                Console.WriteLine($"Name: {pet.Name}");
             }
         }
     }
